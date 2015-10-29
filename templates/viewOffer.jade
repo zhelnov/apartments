@@ -1,0 +1,58 @@
+extends frame.jade
+
+block css
+	link(rel='stylesheet/less', type='text/css', href='/css/viewOffer.less')
+	link(rel='stylesheet', type='text/css', href='/css/lightbox.css')
+
+block js
+	script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?sensor=false')
+	script(type='text/javascript', src='/js/libs/gmaps.js')
+	script(type='text/javascript', src='/js/ap.offer.js')
+
+block content
+	.view-offer(data-lat=offer.geo.lat, data-lng=offer.geo.lng)
+		h1 Offer: 
+			b #{offer.title}
+		p #{offer.description}
+
+		b PRICE: 
+		span.label.label-danger #{offer.price} USD
+		br
+
+		b Rent type: 
+		span.label.label-default #{rentType}
+		br
+
+		b Building/offer type:
+		span.label.label-primary #{buildingType}
+		br
+
+		if offer.floor
+			b Floor: 
+			span.label.label-success #{offer.floor}
+			br
+
+		if offer.roomCount
+			b Rooms: 
+			span.label.label-info #{offer.roomCount}
+			br
+
+		if offer.square
+			b Square:
+			span.label.label-warning #{offer.square}
+			br
+
+		if offer.photos.length
+			h2 #{offer.photos.length} photos attached:
+			.photos
+				each photo in offer.photos
+					a.example-image-link(href='/' + photo.path, data-lightbox="example-set", data-title=offer.title)
+						img.example-image(src='/' + photo.path, alt=offer.description)
+
+				script(type='text/javascript', src='/js/libs/lightbox.min.js')
+		else 
+			h2 No photos in this offer :(
+
+		h2 Place on map:
+		.map
+		

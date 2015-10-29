@@ -1,0 +1,37 @@
+if withFrame
+	include ./../frame.jade
+	if css
+		style(type='text/css')
+			| #{css}
+	script(type='text/javascript', src='/js/windows/jquery.signup.js')
+
+img.signup-img(src='/img/lepo-logo.png')
+
+h2.signup-head Sign up now to access all abilities!
+
+p.signup-phrase Its free and fast, just feel the fields below:
+
+.alert.alert-danger.hidden(role='alert', data-error='-1')
+	span.glyphicon.glyphicon-exclamation-sign(area-hidden='true')
+	span.sr-only Error:
+	| User already exists...
+
+form.login.signup(method='post', data-header='Sign up')
+	.form-group
+		input.form-control(type='text', placeholder='Email', name='mail')
+		label.control-label.hidden Invalid email
+
+	.form-group
+		input.form-control(type='password', placeholder='Password', name='password')
+		label.control-label.hidden Invalid password(s)
+
+	.form-group
+		input.form-control(type='password', placeholder='Confirm password', name='password2')
+		label.control-label.hidden Invalid password(s)
+
+	.form-group.buttons
+		button.btn.btn-success.button-confirm Sign up for FREE
+
+		p Or sign up using:
+
+		include ./../parts/block.socialButtons.jade

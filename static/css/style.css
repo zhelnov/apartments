@@ -1,0 +1,62 @@
+html,
+body,
+.map-canvas {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+form > * {
+	margin: 5px;
+}
+
+.buttons > * {
+	margin: 3px;
+}
+
+.white {
+	color: white !important;
+}
+
+
+.loading-overlay,
+.noscript-overlay {
+	display: none;
+	z-index: 3999;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-color: #F6ECF9;
+	opacity: 0.4;
+}
+
+.loading-icon {
+	z-index: 4000;
+	width: 32px;
+	height: 32px;
+	display: block;
+	margin: 25% auto 0;
+}
+
+.noscript-overlay {
+	display: block;
+	padding: 100px 0;
+}
+
+.layer-pusher {
+	height: 27px;
+	clear: both;
+}
+
+.favorites {
+	margin-left: 5px;
+}
+
+h1.head {
+	text-align: center;
+}

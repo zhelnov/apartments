@@ -1,0 +1,49 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+   .container
+      .navbar-header
+         button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+
+         img.navbar-brand(src='/img/logo-top.png')
+         a.navbar-brand.white(href='/') Lepo.Space
+
+      #navbar.collapse.navbar-collapse
+         ul.nav.navbar-nav
+            li
+               a(href='/map') Map
+
+            if isMap
+               li.dropdown
+                  a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="true")
+                     | Watch areas &nbsp;
+                     span.caret
+                  ul.dropdown-menu
+
+                     li
+                        a.areas-add(href='#') Add
+                     li
+                        a.areas-toggle(href='#') Toggle 
+
+            if user
+               li.dropdown
+                  a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="true")
+                     | #{user.mail} &nbsp;
+                     span.caret
+                  ul.dropdown-menu
+
+                     li.dropdown-header Your account
+                     li
+                        a(href='/profile') Profile
+                     li
+                        a.logout(href='#', onclick='ap.logout()') Logout
+            else
+               li
+                  a(href='/login') Login
+               li
+                  a(href='/register') Signup
+
+            li
+               a(href='#' onclick='ap.windows.show("feedback")') Feedback

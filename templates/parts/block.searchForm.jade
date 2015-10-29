@@ -1,0 +1,61 @@
+h2.search-info
+	
+.search-form.panel.panel-default
+	.panel-heading 
+		h2 Search filters
+	.panel-body
+		form(method='post')
+			.form-group
+				input.form-control(type='text', placeholder='Place', name='city')
+
+			.form-group
+				input.form-control(type='text', placeholder='Keywords', name='keywords')
+
+			hr.divider
+
+			.form-group
+				label Offer type:
+				select.form-control(name='buildingType')
+					option(value='-1') Any
+					each val in buildingTypes
+						option(value=val.id) #{val.name}
+
+				label Rent type:
+				select.form-control(name='rentType')
+					option(value='-1') Any
+					each val in rentTypes
+						option(value=val.id) #{val.name}
+
+			hr.divider
+
+			.form-group.linear(data-name='price')
+				label.control-label Price range:
+				br
+				input.form-control(type='text', placeholder='From', name='price-from')
+				| &nbsp;- 
+				input.form-control(type='text', placeholder='To', name='price-to')
+
+			.form-group.linear(data-name='roomCount')
+				label.control-label Room count:
+				br
+				input.form-control(type='text', placeholder='From', name='room-from')
+				| &nbsp;- 
+				input.form-control(type='text', placeholder='To', name='room-to')
+
+			.form-group.linear(data-name='floor')
+				label.control-label Floor:
+				br
+				input.form-control(type='text', placeholder='From', name='floor-from')
+				| &nbsp;- 
+				input.form-control(type='text', placeholder='To', name='floor-to')
+
+			.form-group.linear(data-name='square')
+				label.control-label Square:
+				br
+				input.form-control(type='text', placeholder='From', name='square-from')
+				| &nbsp;- 
+				input.form-control(type='text', placeholder='To', name='square-to')
+
+	.panel-footer
+		button.btn.btn-success.button-search Search
+		button.btn.btn-danger.button-reset Reset

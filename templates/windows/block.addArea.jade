@@ -1,0 +1,26 @@
+-function prettyDate(dateString, forpick){
+	//if it's already a date object and not a string you don't need this line:
+	-var date = new Date();
+	-var d = date.getDate();
+	-var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+	-var m = monthNames[date.getMonth()];
+	-var y = date.getFullYear();
+	-var h = date.getHours();
+	-var min = date.getMinutes();
+	-return !forpick ? d+' '+m+' '+y + ' at ' + (h < 10 ? '0' + h : h)  + ':' + (min < 10 ? '0' + min : min) : d+'-'+(date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) +'-'+y;
+-}
+
+.add-area
+	.input-append.date(data-date=prettyDate(null, true), data-date-format="mm-dd-yyyy", data-header='Adding new watch area')
+		input#dp3.span2(size="16", type="text", placeholder='Watch start date') 
+		span.add-on
+		i.icon-th
+
+	.input-append.date(data-date=prettyDate(null, true), data-date-format="mm-dd-yyyy")
+		input#dp2.span2(size="16", type="text", placeholder='Watch end date') 
+		span.add-on
+		i.icon-th
+
+	.form-group.buttons.bottom
+			button.btn.btn-success.button-confirm Save
+			button.btn.btn-danger.button-decline Cancel

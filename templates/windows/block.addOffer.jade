@@ -1,0 +1,52 @@
+div(data-step='1')
+	h3.offer-head Fill fields below to place a new offer onto the map
+
+	img.offer-pic(src='/img/signup-pic.jpg')
+
+	form.add-offer(method='post', data-header='New offer onto map')
+
+		.form-group
+			label Title:
+				input.form-control.title(type='text', name='title')
+
+		.input-group
+			.input-group-addon Price(in USD)
+			input.form-control.number(type='number', name='price')
+
+		.form-group.buttons.combo-boxes
+			div
+				label Offer type:
+				select.form-control(name='buildingType')
+					each val in buildingTypes
+						option(value=val.id) #{val.name}
+
+			div
+				label Rent type:
+				select.form-control(name='rentType')
+					each val in rentTypes
+						option(value=val.id) #{val.name}
+
+		.input-group
+			.input-group-addon Room count
+			input.form-control.number(type='number', name='roomCount')
+
+		.input-group
+			.input-group-addon Floor
+			input.form-control.number(type='number', name='floor')
+
+		.input-group
+			.input-group-addon Square
+			input.form-control.number(type='number', name='square')
+		
+		.form-group
+			label Description:
+				textarea.form-control(rows='7', name='description')
+
+		.form-group.buttons.bottom
+			button.btn.btn-success.button-confirm Place offer
+			button.btn.btn-danger.button-decline Cancel
+
+	include ./../parts/block.fileUpload.jade
+
+.hidden(data-step='2')
+	h3.offer-head Congratulations! Your offer now available at the map!

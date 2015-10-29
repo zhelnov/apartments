@@ -1,0 +1,104 @@
+
+extends frame.jade
+
+block css
+	link(rel='stylesheet/less', type='text/css', href='/css/profile.less')
+
+block js
+	script(type='text/javascript', src='/js/ap.profile.js')
+
+block content
+	.profile
+		ul.nav.nav-tabs
+			li.active(role="presentation", data-action='profile')
+				a(href='#') Profile
+			li(role="presentation", data-action='favorites')
+				a(href='#') Favorites
+			li(role="presentation", data-action='offers')
+				a(href='#') My offers
+
+		.action(data-action='profile')
+		
+			.avatar-wrap
+				img.avatar(src=(user.avatar? '/' + user.avatar : '/thumb.png'))
+				form.dropzone#avatar(action='/file/upload')
+
+			form(method='post', data-header='Sign up')
+				.form-group
+					input.form-control(type='text', name='mail', value=user.mail, disabled='true')
+				.form-group
+					input.form-control(type='text', placeholder='First Name', name='firstName' value=(user.firstName ? user.firstName : ''))
+				.form-group
+					input.form-control(type='text', placeholder='Last Name', name='lastName' value=(user.lastName ? user.lastName : ''))
+
+				.form-group
+					input.form-control(type='text', placeholder='Phone', name='phone' value=(user.phone ? user.phone : ''))
+
+				.checkbox
+					label
+						input(type='checkbox', name='hideContacts', checked=(user.hideContacts ? 'true' : undefined))
+						| Hide my contact phone at the offers
+
+				.form-group
+					label Some info about you:
+					textarea.form-control(rows='7', name='about')
+						if user.about 
+							| #{user.about} 
+
+				.form-group.buttons.bottom
+					button.btn.btn-success.button-confirm Save profile info
+
+		.action.hidden(data-action='favorites')
+			if favorites
+				table.table.table-striped.table-hover
+					thead
+						tr
+							th #
+							th Title
+							th Owner mail
+							th Store time
+					tbody
+						each fav in favorites
+							tr(data-id=fav.offerId+'')
+								td
+									input.fav-check(type='checkbox')
+								td 
+									a(href='/offer/view/'+fav.offerId) #{fav.title}
+								td #{fav.mail}
+								td #{prettyDate(fav.addTime)}
+
+				.summary.hidden
+					p.total
+					button.fav-remove.btn Remove
+			else
+				h1 No favorites for you...
+
+
+		.action.hidden(data-action='offers')
+			if offers.length
+				table.table.table-striped.table-hover
+					thead
+						tr
+							th #
+							th Title
+							th Description
+							th Add time
+					tbody
+						each of in offers
+							tr(data-id=of._id+'')
+								td
+									input.offer-check(type='checkbox')
+									span.glyphicon.glyphicon-edit
+								td 
+									a(href='/offer/view/'+of._id) #{of.title}
+								td #{of.description.substr(0, Math.min(50, of.description.length))+'...'}
+								td #{prettyDate(of.postTime)}
+
+				.summary.hidden
+					p.total
+					button.fav-remove.btn Remove
+			else
+				h1 You have no offers yet...
+
+
+

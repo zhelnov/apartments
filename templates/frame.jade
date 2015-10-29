@@ -1,0 +1,42 @@
+-function prettyDate(dateString, forpick){
+    //if it's already a date object and not a string you don't need this line:
+    -var date = new Date(dateString);
+    -var d = date.getDate();
+    -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    -var m = monthNames[date.getMonth()];
+    -var y = date.getFullYear();
+    -var h = date.getHours();
+    -var min = date.getMinutes();
+    -return !forpick ? d+' '+m+' '+y + ' at ' + (h < 10 ? '0' + h : h)  + ':' + (min < 10 ? '0' + min : min) : d+'-'+m+'-'+y;
+-}
+
+doctype html
+html
+   head(lang='en')
+      meta(charset='UTF-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+      link(rel='shortcut icon', href='/img/favicon.ico', type='image/x-icon')
+
+      title LEPO.space - find out your space
+
+      include bundles/styles.jade
+      block css
+
+      include bundles/scripts.jade
+      block js
+
+   body
+      noscript
+         .noscript-overlay
+            h1 Unfortunately, we're couldn't run without javascript :(
+
+      .loading-overlay
+         img.loading-icon(src='img/loading.gif')
+
+      .layer-pusher
+
+      include parts/block.topMenu.jade
+      include parts/block.modalWindow.jade
+      include parts/block.marker.jade
+
+      block content

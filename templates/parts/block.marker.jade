@@ -1,0 +1,12 @@
+.marker.hidden
+	b.title
+	br
+	i.price
+	p.descr
+	
+	a.btn.btn-primary.more(href="#") More...
+	button.btn.btn-default.btn-md.favorites(data-id="0", onclick="ap.googleMaps.toggleFavorite(this.getAttribute('data-id'), ap.googleMaps.toggleFav)")
+		span.glyphicon.glyphicon-heart(aria-hidden="true")
+	button.btn.btn-danger.btn-md(onclick="ap.windows.show('feedback')" style="margin-left:5px;")
+		span.glyphicon.glyphicon-remove(aria-hidden="true")
+		| Abuse

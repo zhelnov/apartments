@@ -1,0 +1,20 @@
+div(data-step='1')
+	form.feedback(method='post', data-header='Feedback')
+
+		.form-group
+			input.form-control(type='text', placeholder='Your email', name='mail' value=user?user.mail:undefined)
+			label.control-label.hidden Invalid email
+
+		.form-group
+			input.form-control(type='text', placeholder='Your name', name='name' value=user?user.firstName:undefined)
+
+		.form-group
+				label Tell us about your problem/proposition:
+					textarea.form-control(rows='7', name='message')
+
+		.form-group.buttons.bottom
+				button.btn.btn-success.button-confirm Confirm
+				button.btn.btn-danger.button-decline Cancel
+
+.hidden(data-step='2')
+	h3(align='center') Thank you!

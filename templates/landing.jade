@@ -1,0 +1,22 @@
+extends frame.jade
+
+block css
+	link(href='https://fonts.googleapis.com/css?family=Raleway|Cabin', rel='stylesheet', type='text/css')
+	link(rel='stylesheet/less', type='text/css', href='/css/landing.less')
+
+block content
+	.landing
+		h1.head Искать жильё ещё никогда не было настолько просто!
+
+		.row
+			.col-md-6.logo
+				img(src='/img/lepo-logo.png')
+			.col-md-6
+				.form-group.buttons
+					a.btn.btn-success.button-confirm(href='/login') Войдите
+					p.text или
+					a.btn.btn-primary.button-signup(href='/register') Зарегистрируйтесь
+
+				p.text ...или авторизуйтесь, с помощью соц. сетей:
+
+				include ./parts/block.socialButtons.jade

@@ -1,0 +1,31 @@
+if withFrame
+	include ./../frame.jade
+	if css
+		style(type='text/css')
+			| #{css}
+	script(type='text/javascript', src='/js/windows/jquery.login.js')
+	h1.head Log in to access all features:
+
+.alert.alert-danger.hidden(role='alert', data-error='401')
+	span.glyphicon.glyphicon-exclamation-sign(area-hidden='true')
+	span.sr-only Oops:
+	| To complete this action you need to be authorized...
+
+form.login(method='post', data-header='Login')
+
+	.form-group
+		input.form-control(type='text', placeholder='Email', name='mail')
+		label.control-label.hidden Invalid email
+
+	.form-group
+		input.form-control(type='password', placeholder='Password', name='password')
+		label.control-label.hidden Invalid password
+
+	.form-group.buttons
+		button.btn.btn-success.button-confirm Login
+		p.or or
+		button.btn.btn-primary.button-signup Sign up
+
+		p Or sign in using:
+
+		include ./../parts/block.socialButtons.jade

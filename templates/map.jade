@@ -1,0 +1,18 @@
+extends frame.jade
+
+block css
+	link(rel='stylesheet/less', type='text/css', href='/css/searchForm.less')
+	link(rel='stylesheet', type='text/css', href='/css/jquery.auto-complete.css')
+
+block js
+	script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing')
+	script(type='text/javascript', src='/js/libs/markerCluster.js')
+	script(type='text/javascript', src='/js/libs/jquery.auto-complete.min.js')
+	script(type='text/javascript', src='/js/libs/gmaps.js')
+	script(type='text/javascript', src='/js/ap.googleMaps.js')
+	script(type='text/javascript', src='/js/ap.searchForm.js')
+
+block content
+	include ./parts/block.searchForm.jade
+
+	.map-canvas
