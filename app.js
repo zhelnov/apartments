@@ -36,35 +36,6 @@ var core = AP.helper.requirer({
 		this.morgan('dev'),
 	], app);
 
-	var multer = require('multer');
-	var upload = multer({ 
-		dest: './static/files/',
-		fileSize: 1024*1024*5
-	});
-
-	app.post('/file/upload', upload.single('photo'), function (req, res, next) {
-		if (req.file) {
-			var tmp_path = __dirname + '/' + req.file.path;
-			var shortName = Date.now() + '.' + req.file.mimetype.substr(6);
-		    var target_path = __dirname + '/static/files/' + shortName;
-
-			if (['image/png', 'image/gif', 'image/jpeg'].indexOf(req.file.mimetype) === -1) {
-				this.fs.unlink(tmp_path, function(err) {
-		            if (err) {
-		                throw err;
-		            }
-		        });
-				res.status(500).end('Invalid format!');
-				return;
-			}
-
-			this.fs.rename(tmp_path, target_path, function(err) {
-		        if (err) throw err;
-		    });
-		}
-		res.end(shortName);
-	}.bind(this));
-
 	AP.helper.router({
 		main: {
 			'/': {
